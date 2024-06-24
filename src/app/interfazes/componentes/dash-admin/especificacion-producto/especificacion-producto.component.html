@@ -1,0 +1,30 @@
+<div class="container mt-2">
+    <h2 class="mb-4 text-center display-6">Registrar Componente</h2>
+    <form (ngSubmit)="registrarEspecificacion()" class="shadow-sm p-4 border rounded bg-white">
+        
+        <div class="mb-4 position-relative">
+            <label for="nombre" class="form-label">Componente</label>
+            <input type="text" class="form-control" id="nombre" [(ngModel)]="especificacion.nombre" name="nombre" required (input)="buscarSugerencias()">
+            <!-- Dropdown para sugerencias -->
+            <div *ngIf="sugerencias.length > 0" class="list-group position-absolute w-100" style="z-index: 1000;">
+                <button *ngFor="let sugerencia of sugerencias" class="list-group-item list-group-item-action" (click)="seleccionarSugerencia(sugerencia)">
+                    {{ sugerencia.nombre }}
+                </button>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea class="form-control" id="descripcion" [(ngModel)]="especificacion.descripcion" name="descripcion" rows="4" required></textarea>
+        </div>
+
+        <div class="mb-4">
+            <label for="precioAdicional" class="form-label">Precio Componente</label>
+            <input type="number" class="form-control" id="precioAdicional" [(ngModel)]="especificacion.precioAdicional" name="precioAdicional" step="0.01" required>
+        </div>
+
+        <div class="text-end">
+            <button type="submit" class="btn btn-primary">Registrar Componente</button>
+        </div>
+    </form>
+</div>

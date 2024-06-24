@@ -1,0 +1,37 @@
+<div class="container mt-2">
+    <div class="title-container text-center mb-4">
+      <h2 class="main-title">
+        <i class="bi bi-laptop"></i> Computadoras Disponibles
+      </h2>
+    </div>
+    <div class="row">
+      <!-- Botón para registrar computadora solo visible para el administrador -->
+      <div class="col-12 mb-4" *ngIf="isAdmin">
+        <button mat-raised-button color="primary" (click)="openRegistrarComputadoraModal()">
+          Registrar Computadora
+        </button>
+      </div>
+      <!-- Repetimos para cada producto usando *ngFor -->
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let producto of productos">
+        <mat-card class="product-card">
+          <mat-card-header>
+            <mat-card-title>{{ producto.nombre }}</mat-card-title>
+            <mat-card-subtitle>${{ producto.precio }}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image [src]="producto.imagen" alt="Imagen del Producto">
+          <mat-card-content>
+            <p>{{ producto.descripcion }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" [routerLink]="['/admin/producto-detalles', producto.id]">
+              Ver Más
+            </button>
+            <button mat-raised-button color="warn" *ngIf="producto.id !== undefined" (click)="eliminarProducto(producto.id!)">
+              Eliminar
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  

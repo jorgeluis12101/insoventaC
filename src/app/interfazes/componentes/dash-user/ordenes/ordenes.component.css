@@ -1,0 +1,31 @@
+.modal-header.bg-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-close {
+  background-color: white;
+}

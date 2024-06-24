@@ -1,0 +1,61 @@
+<div class="container my-5">
+  <div class="card p-4">
+      <div class="row">
+          <div class="col-md-4 text-center mb-4 mb-md-0">
+              <img src="../../../../../assets/person1.jpeg" alt="Perfil de Usuario" class="img-fluid rounded-circle profile-img">
+              <button class="btn btn-danger w-100" (click)="eliminarCuenta()">Eliminar Cuenta</button>
+          </div>
+          <div class="col-md-8">
+              <div class="profile-header">
+                  <i class="bi bi-person-circle profile-icon"></i>
+                  <h3 class="profile-title">Perfil de Usuario</h3>
+              </div>
+              <div *ngIf="!editable; else editForm">
+                  <div class="profile-info">
+                      <p><strong>Nombres:</strong> {{ usuario.nombre }}</p>
+                      <p><strong>Apellidos:</strong> {{ usuario.apellido }}</p>
+                      <p><strong>DNI:</strong> {{ usuario.dni }}</p>
+                      <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+                      <p><strong>Username:</strong> {{ usuario.username }}</p>
+                      <p><strong>Correo:</strong> {{ usuario.correo }}</p>
+                  </div>
+                  <div class="text-center mt-3">
+                      <button type="button" class="btn btn-secondary" (click)="habilitarEdicion()">Editar Perfil</button>
+                  </div>
+              </div>
+              <ng-template #editForm>
+                  <form class="row g-3">
+                      <div class="col-md-6">
+                          <label for="nombre" class="form-label">Nombres</label>
+                          <input type="text" class="form-control" id="nombre" [(ngModel)]="usuario.nombre" name="nombre">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="apellido" class="form-label">Apellidos</label>
+                          <input type="text" class="form-control" id="apellido" [(ngModel)]="usuario.apellido" name="apellido">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="dni" class="form-label">DNI</label>
+                          <input type="text" class="form-control" id="dni" [(ngModel)]="usuario.dni" name="dni">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="telefono" class="form-label">Teléfono</label>
+                          <input type="text" class="form-control" id="telefono" [(ngModel)]="usuario.telefono" name="telefono">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="username" class="form-label">Username</label>
+                          <input type="text" class="form-control" id="username" [(ngModel)]="usuario.username" name="username">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="correo" class="form-label">Correo</label>
+                          <input type="email" class="form-control" id="correo" [(ngModel)]="usuario.correo" name="correo">
+                      </div>
+                      <div class="col-12 d-flex justify-content-center">
+                          <button type="button" class="btn btn-primary me-2" (click)="guardarCambios()">Guardar Cambios</button>
+                          <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
+                      </div>
+                  </form>
+              </ng-template>
+          </div>
+      </div>
+  </div>
+</div>

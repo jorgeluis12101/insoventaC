@@ -1,0 +1,72 @@
+<div class="container mt-5" *ngIf="producto">
+  <form (ngSubmit)="editarProducto()">
+    <div class="row">
+      <h2 class="text-center">Editar Detalles del Producto: {{ producto.nombre }}</h2>
+      <div class="col-md-6">
+        <input type="file" (change)="onFileSelected($event)" accept="image/*">
+        <img [src]="producto.imagen" class="img-fluid rounded mt-3" alt="Imagen del Producto">
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre del Producto</label>
+          <input type="text" class="form-control" id="nombre" [(ngModel)]="producto.nombre" name="nombre">
+        </div>
+
+        <div class="mb-3">
+          <label for="descripcion" class="form-label">Descripción</label>
+          <textarea class="form-control" id="descripcion" [(ngModel)]="producto.descripcion" name="descripcion" rows="3"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="precio" class="form-label">Precio</label>
+          <input type="number" class="form-control" id="precio" [(ngModel)]="producto.precio" name="precio">
+        </div>
+
+        <div class="mb-3">
+          <label for="stock" class="form-label">Stock</label>
+          <input type="number" class="form-control" id="stock" [(ngModel)]="producto.stock" name="stock">
+        </div>
+
+        <div class="mt-3">
+          <button type="submit" class="btn btn-success btn-lg">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="mt-5">
+    <div class="mb-3">
+      <label for="nuevaEspecificacionNombre" class="form-label">Buscar Especificación</label>
+      <input type="text" class="form-control" id="nuevaEspecificacionNombre" [(ngModel)]="nuevaEspecificacionNombre" (input)="buscarEspecificaciones()" name="nuevaEspecificacionNombre" placeholder="Ingrese nombre de la especificación">
+      <div *ngIf="especificacionesEncontradas.length > 0" class="list-group mt-2">
+        <button type="button" class="list-group-item list-group-item-action" *ngFor="let espec of especificacionesEncontradas" (click)="seleccionarEspecificacion(espec)">
+          {{ espec.nombre }} ({{ espec.precioAdicional | currency }})
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="nuevaEspecificacionCantidad" class="form-label">Cantidad</label>
+      <input type="number" class="form-control" id="nuevaEspecificacionCantidad" [(ngModel)]="nuevaEspecificacionCantidad" name="nuevaEspecificacionCantidad" min="1" placeholder="Ingrese cantidad">
+    </div>
+
+    <button type="button" class="btn btn-primary mt-2" (click)="agregarEspecificacion()">Agregar Especificación</button>
+
+    <div *ngIf="producto.especificacionesDisponibles && producto.especificacionesDisponibles.length > 0" class="mb-3 mt-3">
+      <h5>Especificaciones:</h5>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let espec of producto.especificacionesDisponibles">
+          {{ espec.nombre }} (Cantidad: {{ espec.cantidad }}) (Aumento de precio: {{ espec.precioAdicional | currency }}) 
+          <button type="button" class="btn btn-danger btn-sm float-end" (click)="eliminarEspecificacion(espec.id!)">Eliminar</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!producto" class="text-center">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+  <p>Cargando detalles del producto...</p>
+</div>

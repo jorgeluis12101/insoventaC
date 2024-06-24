@@ -1,0 +1,53 @@
+.form-custom {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s;
+  }
+  
+  .form-custom:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+  
+  .custom-input {
+    border: 2px solid #e3e6f0;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+  }
+  
+  .custom-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0,123,255,0.25);
+  }
+  
+  .custom-btn {
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .custom-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .custom-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+  .contador-caracteres {
+    font-size: 12px;
+  }
+  
+  .contador-caracteres span {
+    color: red;
+  }
+  
+  .contador-caracteres span::after {
+    content: attr(data-restantes);
+  }
+  

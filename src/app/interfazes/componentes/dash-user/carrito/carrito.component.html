@@ -1,0 +1,94 @@
+<div *ngIf="ordenes.length > 0; else noData" class="container mt-2">
+  <h2 class="mb-4 text-center">Tus Órdenes</h2>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>Fecha de Creación</th>
+          <th>Estado</th>
+          <th>Monto Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let orden of ordenes; let i = index">
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ formatDate(orden.fechaCreacion) }}</td>
+            <td>{{ orden.estado }}</td>
+            <td>${{ orden.montoTotal }}</td>
+            <td>
+              <button class="btn btn-sm btn-primary" (click)="orden.expandir = !orden.expandir">Ver Productos</button>
+              <button *ngIf="orden.estado !== 'PAGADO'" class="btn btn-sm btn-danger" (click)="eliminarOrden(orden.id)">Eliminar Orden</button>
+              <button *ngIf="orden.estado !== 'PAGADO'" class="btn btn-sm btn-success" (click)="mostrarFormularioPago(orden.id, orden.montoTotal)">Realizar Pago</button>
+              <button *ngIf="orden.estado === 'PAGADO'" class="btn btn-sm btn-info" (click)="descargarComprobante(orden.id)">Descargar Comprobante</button>
+            </td>
+          </tr>
+          <tr *ngIf="orden.expandir">
+            <td colspan="5">
+              <ul class="list-group">
+                <h5>Productos en la Orden {{ i + 1 }}</h5>
+                <li class="list-group-item" *ngFor="let producto of orden.productos">
+                  <div><strong>Nombre:</strong> {{ producto.nombre }}</div>
+                  <div><strong>Precio:</strong> ${{ producto.precio }}</div>
+                  <button *ngIf="orden.estado !== 'PAGADO'" class="btn btn-sm btn-danger" (click)="removerProductoDeLaOrden(orden.id, producto.id)">Eliminar</button>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- Modal para pago -->
+<div class="modal" tabindex="-1" role="dialog" id="pagoModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Realizar Pago</h5>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="montoTotal">Monto Total</label>
+          <input type="text" class="form-control" id="montoTotal" [(ngModel)]="montoTotal" readonly>
+        </div>
+        <div class="form-group">
+          <label for="metodoPago">Método de Pago</label>
+          <select class="form-control" id="metodoPago" [(ngModel)]="metodoPago">
+            <option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+            <option value="Tarjeta de Débito">Tarjeta de Débito</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tarjetaCredito">Número de Tarjeta</label>
+          <input type="text" class="form-control" id="tarjetaCredito" [(ngModel)]="tarjetaCredito" (input)="validarNumeroTarjeta($event)" maxlength="19">
+          <div *ngIf="tarjetaCreditoError" class="text-danger">{{ tarjetaCreditoError }}</div>
+        </div>
+        <div class="form-group">
+          <label for="cvv">CVV</label>
+          <input type="text" class="form-control" id="cvv" [(ngModel)]="cvv" (input)="validarCVV($event)" maxlength="4">
+          <div *ngIf="cvvError" class="text-danger">{{ cvvError }}</div>
+        </div>
+        <div class="form-group">
+          <label for="fechaExpiracion">Fecha de Expiración</label>
+          <input type="text" class="form-control" id="fechaExpiracion" [(ngModel)]="fechaExpiracion" placeholder="MM/AA" (input)="validarFechaExpiracion($event)" maxlength="5">
+          <div *ngIf="fechaExpiracionError" class="text-danger">{{ fechaExpiracionError }}</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cerrarModal()">Cerrar</button>
+        <button type="button" class="btn btn-primary" [disabled]="!esFormularioValido()" (click)="realizarPago()">Pagar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noData>
+  <div class="text-center mt-5">
+    <p>No hay productos en tu carrito.</p>
+  </div>
+</ng-template>

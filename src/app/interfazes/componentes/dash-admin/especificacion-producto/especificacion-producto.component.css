@@ -1,0 +1,54 @@
+.container {
+    max-width: 800px; /* Limita el ancho máximo del formulario para mejorar la legibilidad */
+}
+
+.form-control, .btn {
+    border-radius: 0.25rem; /* Aplica bordes redondeados suaves */
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Color de borde cuando el elemento está enfocado */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra de enfoque */
+}
+
+.list-group-item-action:hover {
+    background-color: #f8f9fa; /* Color de fondo para los elementos de la lista al pasar el ratón */
+}
+
+.list-group-item-action:active {
+    background-color: #e2e3e5; /* Color de fondo para los elementos de la lista al hacer clic */
+}
+
+.text-end button {
+    padding: 0.5rem 1.5rem; /* Aumenta el padding del botón para hacerlo más grande */
+}
+
+.shadow-sm {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06); /* Sombra suave para el formulario */
+}
+
+.border {
+    border: 1px solid #dee2e6; /* Borde sutil alrededor del formulario */
+}
+
+.bg-white {
+    background-color: #fff; /* Fondo blanco para el formulario */
+}
+
+h2.display-6 {
+    font-size: 1.5rem; /* Ajuste de tamaño de fuente para un título más grande */
+    font-weight: bold; /* Negrita para el título */
+    color: #343a40; /* Color del título */
+}
+
+.position-relative {
+    position: relative; /* Asegura que los elementos dentro de este contenedor se posicionen relativamente */
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem; /* Espacio inferior para los elementos */
+}
+
+.text-end {
+    text-align: end; /* Alinea el texto y los elementos al final del contenedor */
+}

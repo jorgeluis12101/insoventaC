@@ -1,0 +1,33 @@
+<div class="container mt-2">
+  <h2 class="mb-4 text-center">Registrar Producto</h2>
+  <form (submit)="registrarProducto(); $event.preventDefault()" class="form-custom p-4">
+    <div class="mb-3">
+      <label for="nombreProducto" class="form-label">Nombre del Producto</label>
+      <input type="text" class="form-control custom-input" id="nombreProducto" [(ngModel)]="producto.nombre" name="nombre" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="descripcionProducto" class="form-label">Descripción</label>
+      <textarea class="form-control custom-input" id="descripcionProducto" [(ngModel)]="producto.descripcion" name="descripcion" rows="3" maxlength="5000" required></textarea>
+      <small class="text-muted contador-caracteres">Caracteres restantes: <span id="contador">5000</span></small>
+    </div>
+    <div class="mb-3">
+      <label for="stockProducto" class="form-label">Stock</label>
+      <input type="number" class="form-control custom-input" id="stockProducto" [(ngModel)]="producto.stock" name="stock" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="imagenProducto" class="form-label">Imagen del Producto</label>
+      <input type="file" class="form-control custom-input" id="imagenProducto" (change)="convertToBase64($event)">
+    </div>
+
+    <div class="mb-3">
+      <label for="especificacionesProducto" class="form-label">Especificaciones</label>
+      <select class="form-control custom-input" id="especificacionesProducto" [(ngModel)]="producto.especificacionIds" name="especificaciones" multiple>
+        <option *ngFor="let especificacion of especificaciones" [value]="especificacion.id">{{ especificacion.nombre }}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn custom-btn d-block w-100 mt-4">Registrar</button>
+  </form>
+</div>

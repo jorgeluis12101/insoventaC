@@ -1,0 +1,27 @@
+.vertical-navbar {
+  top: 60px; /* Ajusta este valor según la altura de tu navbar principal */
+  left: 0;
+  height: calc(100vh - 60px); /* Ajusta la altura para que no se superponga al navbar principal */
+  
+}
+
+.custom-btn {
+  width: 100%; /* Hace que el botón ocupe todo el ancho disponible */
+  background-color: #f8f9fa; /* Cambia el color del botón */
+  color: #333; /* Color del texto del botón */
+  border: 1px solid #ccc; /* Borde sutil */
+}
+
+.custom-btn:hover {
+  background-color: #7788a8; /* Color de fondo al pasar el mouse */
+}
+
+.custom-link {
+  text-align: center; /* Alinea el texto de los enlaces al centro */
+  width: 100%; /* Hace que el enlace ocupe todo el ancho disponible */
+}
+
+.custom-link:hover {
+  background-color: #e2e3e5; /* Color de fondo al pasar el mouse */
+  color: #000; /* Cambia el color del texto al pasar el mouse */
+}

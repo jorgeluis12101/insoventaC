@@ -1,0 +1,95 @@
+.title-container {
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #343a40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-title i {
+    margin-right: 10px;
+    color: #007bff;
+    font-size: 2.5rem;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: #6c757d;
+    margin-top: 10px;
+}
+
+/* Existing styles for product cards */
+.product-card {
+    margin-bottom: 20px;  /* Espacio entre tarjetas */
+    height: 100%;  /* Altura automática para ajustar el contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el espacio uniformemente */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Añade una sombra suave */
+    transition: transform 0.2s ease-in-out; /* Transición suave al pasar el ratón */
+    border-radius: 10px; /* Añade bordes redondeados */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+}
+
+.product-card:hover {
+    transform: translateY(-10px); /* Eleva la tarjeta al pasar el ratón */
+}
+
+mat-card-header {
+    background-color: #f8f9fa; /* Color de fondo del encabezado */
+    padding: 10px; /* Espaciado interno */
+    border-bottom: 1px solid #e0e0e0; /* Línea de separación */
+}
+
+mat-card-title {
+    font-size: 1rem; /* Tamaño de la fuente del título */
+    font-weight: bold; /* Negrita */
+}
+
+mat-card-subtitle {
+    color: #007bff; /* Color del subtítulo */
+    font-size: 0.875rem; /* Tamaño de la fuente del subtítulo */
+}
+
+mat-card-image {
+    width: 100%; /* Asegura que la imagen cubra el ancho de la tarjeta */
+    height: 200px; /* Altura fija para las imágenes */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+}
+
+mat-card-content {
+    flex-grow: 1; /* Permite que el contenido crezca para llenar el espacio */
+    overflow: hidden; /* Oculta el texto que exceda el espacio del contenido */
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es demasiado largo */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita el texto a dos líneas */
+    -webkit-box-orient: vertical;
+    padding: 10px; /* Espaciado interno */
+    background-color: #fff; /* Fondo blanco para el contenido */
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: space-between; /* Distribuye los botones uniformemente */
+    padding: 10px; /* Espaciado interno */
+    background-color: #f8f9fa; /* Fondo ligeramente gris para las acciones */
+    border-top: 1px solid #e0e0e0; /* Línea de separación */
+}
+
+mat-card-actions button {
+    width: 48%; /* Asegura que los botones tengan el mismo ancho */
+    font-size: 0.875rem; /* Tamaño de la fuente del botón */
+    border-radius: 5px; /* Bordes redondeados en los botones */
+}
+
+@media (max-width: 768px) {
+    .col-md-4, .col-lg-3, .col-sm-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
