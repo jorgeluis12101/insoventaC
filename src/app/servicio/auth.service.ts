@@ -139,7 +139,7 @@ export class AuthService {
   }
 
   updatePassword(email: string, token: string, newPassword: string): Observable<any> {
-    const url = 'http://localhost:8080/password/update';
+    const url = 'https://ventacomputadoras.fly.dev/password/update';
     const body = { email, token, newPassword };
     return this.http.post(url, body, { responseType: 'text' as 'json' });
 }
